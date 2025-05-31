@@ -1,0 +1,60 @@
+Table usuarios {
+  id int [pk, increment]
+  nombre varchar
+  email varchar [unique]
+  password_hash varchar
+  rol varchar
+  activo boolean
+}
+
+Table docentes {
+  id int [pk, increment]
+  nombre varchar
+  rut varchar
+  email varchar
+  estado varchar
+}
+
+Table planes_estudio {
+  id int [pk, increment]
+  nombre varchar
+  codigo varchar
+  fecha_inicio date
+  fecha_fin date
+  estado varchar
+}
+
+Table asignaturas {
+  id int [pk, increment]
+  nombre varchar
+  codigo varchar
+  nivel int
+  plan_estudios_id int [ref: > planes_estudio.id]
+}
+
+Table eventos {
+  id int [pk, increment]
+  nombre varchar
+  fecha date
+  hora_inicio time
+  hora_fin time
+  asignatura_id int [ref: > asignaturas.id]
+  plan_estudios_id int [ref: > planes_estudio.id]
+  vacantes int
+  nivel int
+}
+
+Table asignaciones {
+  id int [pk, increment]
+  evento_id int [ref: > eventos.id]
+  docente_id int [ref: > docentes.id]
+  horas_asignadas int
+}
+
+Table archivos_insumo {
+  id int [pk, increment]
+  tipo varchar
+  nombre_archivo varchar
+  fecha_carga date
+  usuario_id int [ref: > usuarios.id]
+}
