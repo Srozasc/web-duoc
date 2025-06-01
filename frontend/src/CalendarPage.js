@@ -21,6 +21,7 @@ import EditIcon from '@mui/icons-material/Edit';
 
 // Configurar dayjs para usar español
 dayjs.locale('es');
+dayjs.updateLocale('es', { weekStart: 0 });
 
 const WEEKDAY_NAMES = ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'];
 
@@ -169,7 +170,7 @@ const CalendarPage = () => {
                   }
                 }
               }}
-              dayOfWeekFormatter={(day) => WEEKDAY_NAMES[day]}
+              dayOfWeekFormatter={(day) => day}
               sx={{ minWidth: 340, minHeight: 400 }}
             />
           </LocalizationProvider>
