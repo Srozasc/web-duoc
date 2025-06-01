@@ -64,7 +64,18 @@ export const authService = {
     },
     logout: () => {
         localStorage.removeItem('token');
-    }
+    },
+    changePassword: async (currentPassword, newPassword) => {
+        try {
+            const response = await apiClient.post('/change-password', {
+                current_password: currentPassword,
+                new_password: newPassword
+            });
+            return response.data;
+        } catch (error) {
+            throw error.response?.data || error;
+        }
+    },
 };
 
 // Docentes services
@@ -153,4 +164,22 @@ export const reportesService = {
         });
         return response.data;
     }
+};
+
+// Usuarios services
+export const usuariosService = {
+    changePassword: async (currentPassword, newPassword) => {
+        try {
+            const response = await axios.post(
+                `${API_URL}/api/usuarios/change-password`,
+                { current_password: currentPassword, new_password: newPassword },
+                {
+                    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+                }
+            );
+            return response.data;
+        } catch (error) {
+            throw error;
+        }
+    },
 };

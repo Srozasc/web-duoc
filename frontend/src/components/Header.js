@@ -14,7 +14,8 @@ import {
   AccountCircle as AccountCircleIcon,
   Settings as SettingsIcon,
   ExitToApp as ExitToAppIcon,
-  NotificationsNone as NotificationsNoneIcon
+  NotificationsNone as NotificationsNoneIcon,
+  Key as KeyIcon
 } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
@@ -47,6 +48,11 @@ const Header = () => {
   const handleSettings = () => {
     handleClose();
     navigate('/settings');
+  };
+
+  const handleChangePassword = () => {
+    handleClose();
+    navigate('/change-password');
   };
 
   return (
@@ -115,12 +121,19 @@ const Header = () => {
           </Box>
           
           <Divider />
-          
+
           <MenuItem onClick={handleProfile}>
             <ListItemIcon>
               <AccountCircleIcon fontSize="small" />
             </ListItemIcon>
             <ListItemText>Mi Perfil</ListItemText>
+          </MenuItem>
+
+          <MenuItem onClick={handleChangePassword}>
+            <ListItemIcon>
+              <KeyIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText>Cambiar Contraseña</ListItemText>
           </MenuItem>
 
           <MenuItem onClick={handleSettings}>

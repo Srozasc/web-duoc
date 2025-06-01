@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr
 from datetime import date, time
 from typing import Optional, List
 
@@ -117,3 +117,11 @@ class ArchivoInsumo(ArchivoInsumoBase):
 
     class Config:
         from_attributes = True
+
+# Cambio de contraseña schemas
+class ChangePasswordRequest(BaseModel):
+    current_password: str
+    new_password: str
+
+class Message(BaseModel):
+    message: str

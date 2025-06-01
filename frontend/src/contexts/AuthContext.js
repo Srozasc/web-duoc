@@ -49,12 +49,27 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const changePassword = async (currentPassword, newPassword) => {
+    try {
+      setLoading(true);
+      setError(null);
+      const response = await authService.changePassword(currentPassword, newPassword);
+      return response;
+    } catch (err) {
+      setError(err.message || 'Error al cambiar la contraseña');
+      throw err;
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const value = {
     isAuthenticated,
     loading,
     error,
     login,
-    logout
+    logout,
+    changePassword
   };
 
   return (

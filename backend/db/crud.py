@@ -8,6 +8,9 @@ def get_user(db: Session, user_id: int):
 def get_user_by_email(db: Session, email: str):
     return db.query(models.Usuario).filter(models.Usuario.email == email).first()
 
+def get_user_by_id(db: Session, user_id: int):
+    return db.query(models.Usuario).filter(models.Usuario.id == user_id).first()
+
 def get_users(db: Session, skip: int = 0, limit: int = 100):
     return db.query(models.Usuario).offset(skip).limit(limit).all()
 
@@ -32,3 +35,11 @@ def authenticate_user(db: Session, email: str, password: str):
     if not verify_password(password, user.password_hash):
         return False
     return user
+
+def update_user_password(db: Session, user_id: int, hashed_password: str):
+    db_user = get_user_by_id(db, user_id)
+    if db_user:
+        db_user.password_hash = hashed_password
+        db.commit()
+        db.refresh(db_user)
+    return db_user

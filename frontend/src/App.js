@@ -11,6 +11,7 @@ import InstructorsAssignmentPage from './InstructorsAssignmentPage';
 import InstructorHoursReportPage from './InstructorHoursReportPage';
 import InstructorHoursByCurriculumPage from './InstructorHoursByCurriculumPage';
 import AdminPage from './AdminPage';
+import ChangePasswordPage from './ChangePasswordPage';
 import './App.css';
 
 // Componente que envuelve una ruta protegida con el Layout
@@ -61,6 +62,11 @@ function App() {
           <Route path="/admin" element={
             <ProtectedPageWithLayout>
               <AdminPage />
+            </ProtectedPageWithLayout>
+          } />
+          <Route path="/change-password" element={
+            <ProtectedPageWithLayout>
+              <ChangePasswordPage />
             </ProtectedPageWithLayout>
           } />
           <Route path="/" element={<Navigate to="/dashboard" replace />} />
