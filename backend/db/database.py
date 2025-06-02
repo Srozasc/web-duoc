@@ -9,12 +9,21 @@ load_dotenv()
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+# Debug de variables de entorno
+logger.info("=== Variables de entorno ===")
+logger.info(f"DB_USER: {os.getenv('DB_USER')}")
+logger.info(f"DB_PASSWORD: {'*' * len(os.getenv('DB_PASSWORD', '')) if os.getenv('DB_PASSWORD') else 'No establecido'}")
+logger.info(f"DB_HOST: {os.getenv('DB_HOST')}")
+logger.info(f"DB_PORT: {os.getenv('DB_PORT')}")
+logger.info(f"DB_NAME: {os.getenv('DB_NAME')}")
+logger.info("========================")
+
 # Configuración de la base de datos
-MYSQL_USER = os.getenv('MYSQL_USER', 'avnadmin')
-MYSQL_PASSWORD = os.getenv('MYSQL_PASSWORD')  # Solo desde variable de entorno
-MYSQL_HOST = os.getenv('MYSQL_HOST', 'modelo-academico-modelo-academico.k.aivencloud.com')
-MYSQL_PORT = os.getenv('MYSQL_PORT', '12305')
-MYSQL_DB = os.getenv('MYSQL_DB', 'defaultdb')
+MYSQL_USER = os.getenv('DB_USER', 'avnadmin')
+MYSQL_PASSWORD = os.getenv('DB_PASSWORD')  # Solo desde variable de entorno
+MYSQL_HOST = os.getenv('DB_HOST', 'modelo-academico-modelo-academico.k.aivencloud.com')
+MYSQL_PORT = os.getenv('DB_PORT', '12305')
+MYSQL_DB = os.getenv('DB_NAME', 'defaultdb')
 
 # Ruta al certificado CA
 MYSQL_SSL_CA = os.path.abspath(os.path.join(os.path.dirname(__file__), 'ca.pem'))

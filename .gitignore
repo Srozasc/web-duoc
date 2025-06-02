@@ -36,3 +36,8 @@ __pycache__/
 *.db
 *.pem
 uploads/
+
+# utilitarios temporales
+backend/generate_hash.py
+backend/update_password.py
+backend/update_password.sql
